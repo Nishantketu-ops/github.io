@@ -1,0 +1,797 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nishant Ketu Gaurav</title>
+    <link rel="icon" type="image/png" href="./assets/favicon.png" />
+    <!-- game content start -->
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <!-- CSS for examples -->
+    <link rel="stylesheet" href="./assets/css/examples.css" />
+
+    <!-- This script tag bootstraps PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <!-- Custom CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/tictactoe.css" />
+
+    <!-- for splashscreen -->
+    <style>
+        #loading {
+            outline: none;
+            border: none;
+            background: transparent
+        }
+    </style>
+    <script type="module">
+        const loading = document.getElementById('loading');
+        addEventListener('py:ready', () => loading.close());
+        loading.showModal();
+    </script>
+
+    
+    
+    <!-- game content end -->
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            text-indent: 0;
+        }
+
+        body {
+            background-color: rgb(66, 0, 66);
+            color: white;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        h1 {
+            color: white;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 28pt;
+        }
+
+        .s1 {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        .s2 {
+            color: #666;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s3 {
+            color: white;
+            font-family: "Arial Black", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s4 {
+            color: #00F;
+            font-family: "Arial Black", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        .s7 {
+            color: #00F;
+            font-family: "Arial Black", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: underline;
+            font-size: 7pt;
+        }
+
+        .s9 {
+            color: #1F79C6;
+            font-family: "Arial Black", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        h2 {
+            color: white;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        .s10 {
+            color: white;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        .s12 {
+            color: #666;
+            font-family: Arial, sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 8pt;
+        }
+
+        .p,
+        p {
+            color: #666;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+            margin: 0pt;
+        }
+
+        .s13 {
+            color: white;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+        }
+
+        h3 {
+            color: #666;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s14 {
+            color: white;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        .s15 {
+            color: #666;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s16 {
+            color: #00F;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: underline;
+            font-size: 9pt;
+        }
+
+        .s17 {
+            color: #1F79C6;
+            font-family: "Arial Black", sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        .s18 {
+            color: white;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 11pt;
+        }
+
+        .s20 {
+            color: #16365D;
+            font-family: "Book Antiqua", serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: underline;
+            font-size: 9pt;
+        }
+
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
+
+        li {
+            display: block;
+        }
+
+        #l1 {
+            padding-left: 0pt;
+        }
+
+        #l1>li>*:first-child:before {
+            content: " ";
+            color: #666;
+            font-family: Symbol, serif;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: none;
+            font-size: 9pt;
+        }
+
+        table,
+        tbody {
+            vertical-align: top;
+            overflow: visible;
+        }
+
+        .switch {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+
+        }
+
+        .slider {
+            position: relative;
+            height: 26px;
+            width: 50px;
+            background-color: #ce5151;
+            border-radius: 20px;
+            margin: 0 10px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 2px;
+            bottom: 2px;
+            background-color: rgb(238, 228, 228);
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        input:checked+.slider {
+            background-color: #edf1e9;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(22px);
+        }
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .globe-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .globe {
+            width: 50px;
+            height: 50px;
+            background-image: url('https://i.pinimg.com/originals/c8/ea/31/c8ea31d1fd180e7c7a97a140b3fbbc12.gif');
+            /* Add the URL of your globe image */
+            background-size: cover;
+            border-radius: 50%;
+            transition: transform 1s infinite linear;
+        }
+
+        /* Popup */
+        .container {
+            position: relative;
+
+            height: 100vh;
+            background-color: #05738e;
+        }
+
+        .play-button {
+            width: 70px;
+            height: 26px;
+            background-color: #13131300;
+            position: absolute;
+            top: 10px;
+            left: 90%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            border-radius: 20px;
+            margin: 0 10px;
+            background-image: url('https://media1.giphy.com/media/3oEjHYlwvUK5p9AIbm/giphy.gif?cid=6c09b952r2jaqc0uzuhh2mfutrmj921h4km3pnppfczwo2ei&ep=v1_gifs_search&rid=giphy.gif&ct=g');
+            /* Add the URL of your globe image */
+            background-size: cover;
+            border-radius: 50%;
+            transition: transform 1s infinite linear;
+        }
+
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background-color: rgba(52, 46, 46, 0.5);
+            overflow: hidden;
+            transition: height 0.3s ease;
+            z-index: 999;
+        }
+
+        .popup {
+            width: 100%;
+            max-width: 600px;
+            
+            background-color: #33074e;
+            margin: 50px auto;
+            padding: 8px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* .slider {
+            width: 100%;
+            height: 5px;
+            background-color: #2ecc71;
+            transition: height 0.3s ease;
+        } */
+
+        .close-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+
+        /* popup */
+    </style>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+        }
+
+        function changeGlobeSize(size) {
+            const globe = document.querySelector('.globe');
+            globe.style.width = `${size}px`;
+            globe.style.height = `${size}px`;
+        }
+        // popup
+        document.addEventListener('DOMContentLoaded', function () {
+            const playButton = document.getElementById('playButton');
+            const popupContainer = document.getElementById('popupContainer');
+            const popup = document.getElementById('popup');
+            // const slider = document.querySelector('.slider');
+            const closeButton = document.getElementById('closeButton');
+
+            playButton.addEventListener('click', function () {
+                popupContainer.style.height = '100%';
+                // slider.style.height = '300px'; // Adjust the initial height of the slider
+            });
+
+            closeButton.addEventListener('click', function () {
+                popupContainer.style.height = '0';
+                // slider.style.height = '5px'; // Reset the height when hiding the content
+            });
+        });
+        // popup
+
+        // game script
+        // Function to toggle the display of the Tic Tac Toe content
+        function toggleTicTacToe() {
+            const ticTacToeContainer = document.getElementById('ticTacToeContainer');
+
+            // Fetch the Tic Tac Toe HTML content and inject it into the container
+            fetch('tictactoe.html')
+                .then(response => response.text())
+                .then(data => {
+                    ticTacToeContainer.innerHTML = data;
+                    ticTacToeContainer.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error fetching Tic Tac Toe content:', error);
+                });
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('popupContainer').style.display = 'none';
+        }
+
+        // Function to handle the play button click
+        function playButtonClicked() {
+            // Show the popup
+            document.getElementById('popupContainer').style.display = 'block';
+
+            // Load Tic Tac Toe content
+            toggleTicTacToe();
+        }
+
+        // Attach event listeners
+        // document.getElementById('closeButton').addEventListener('click', closePopup);
+        document.getElementById('popupContainer').addEventListener('click', function (event) {
+            if (event.target === this) {
+                closePopup();
+            }
+        });
+
+        // Call playButtonClicked when the play button is clicked
+        document.getElementById('playButton').addEventListener('click', playButtonClicked);
+
+        // game script end 
+
+    </script>
+</head>
+
+<body>
+    <!-- popup -->
+    <div class="play-button-container" id="playButtonContainer">
+        <div class="play-button" id="playButton">
+            <span class="button-name"></span>
+        </div>
+    </div>
+    <!-- <button id="playButton">Play Tic Tac Toe</button> -->
+    <div class="popup-container" id="popupContainer">
+        <div class="popup" id="popup">
+            <!-- <div class="slider"></div> -->
+            <p>Your are X . Am O .Please click any cell to let me feed my input However choice is mine &#x1F604;
+                <!-- game content start -->
+
+                <!-- game content end -->
+            </p>
+            <section class="pyscript">
+                <!-- Your existing Tic Tac Toe code -->
+                <h1>Tic-Tac-Toe</h1>
+                <script type="py" src="./main.py" config="./pyscript.toml"></script>
+                <table id="board">
+                    <!-- ... (rest of your table code) ... -->
+                    <tr>
+                        <td>
+                            <div id="cell00" data-x="0" data-y="0" class="cell" py-click="GAME.click"></div>
+                        </td>
+                        <td>
+                            <div id="cell01" data-x="0" data-y="1" class="cell" py-click="GAME.click"></div>
+                        </td>
+                        <td>
+                            <div id="cell02" data-x="0" data-y="2" class="cell" py-click="GAME.click"></div>
+                        </td>
+                    <tr>
+                        <td>
+                            <div id="cell10" data-x="1" data-y="0" class="cell" py-click="GAME.click"></div>
+                        </td>
+                        <td>
+                            <div id="cell11" data-x="1" data-y="1" class="cell" py-click="GAME.click"></div>
+                        </td>
+                        <td>
+                            <div id="cell12" data-x="1" data-y="2" class="cell" py-click="GAME.click"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="cell20" data-x="2" data-y="0" class="cell" py-click="GAME.click"></div>
+                        </td>
+                        <td>
+                            <div id="cell21" data-x="2" data-y="1" class="cell" py-click="GAME.click"></div>
+                        </td>
+                        <td>
+                            <div id="cell22" data-x="2" data-y="2" class="cell" py-click="GAME.click"></div>
+                        </td>
+                    </tr>
+                </table>
+                <h2 id="status"></h2>
+                <button id="btn-new-game" py-click="GAME.new_game">New game</button>
+                <button id="btn-toggle-terminal" py-click="GAME.toggle_terminal">Hide/show terminal</button>
+                <div id="terminal" hidden="hidden">
+                    <script id="console" type="py" terminal></script>
+                </div>
+            </section>
+            <!-- Close button for the popup -->
+            <button class="close-button" onclick="closePopup()">Close</button>
+            <button class="close-button" id="closeButton">Close</button>
+        </div>
+    </div>
+
+    <!-- Your existing scripts -->
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <script type="module" src="./main.py" config="./pyscript.toml"></script>
+    <script>
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById('popupContainer').style.display = 'block';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById('popupContainer').style.display = 'none';
+        }
+
+        // Call openPopup when the play button is clicked
+        document.getElementById('playButton').addEventListener('click', openPopup);
+    </script>
+    <!-- popup -->
+
+
+    <div class="switch">
+        <label class="switch" for="darkModeCheckbox">
+            <input type="checkbox" id="darkModeCheckbox" onchange="toggleDarkMode()">
+            <span class="slider"></span>
+        </label>
+        <label for="darkModeCheckbox"></label>
+    </div>
+
+    <div class="globe-container" onmousedown="startResize(event)">
+        <div class="globe"></div>
+        <div class="marker"
+            style="position: absolute; bottom: 0; right: 0; width: 10px; height: 10px; background-color: red; cursor: se-resize;">
+        </div>
+    </div>
+
+    <h1 style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Nishant Ketu Gaurav</h1>
+    <!-- Rest of your HTML content start here -->
+    <p class="s1" style="padding-top: 12pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Aspiring Data Scientist
+        cum QA Automation Engineer</p>
+    <p class="s2" style="padding-top: 8pt;padding-left: 8pt;text-indent: 1pt;line-height: 115%;text-align: left;">An
+        Aspiring Data scientist cum result-driven Quality Assurance Analyst with 2.7 years of experience in functional
+        and automation testing of web applications. Proficient in test planning, execution, and automation using
+        industry-standard tools and technologies.</p>
+    <p class="s1" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Kolkata, West Bengal,
+        India</p>
+    <p class="s3" style="padding-top: 2pt;padding-left: 8pt;text-indent: 0pt;text-align: left;"></p>
+    <p class="s4" style="padding-top: 1pt;padding-left: 8pt;text-indent: 0pt;line-height: 111%;text-align: left;"><span
+            style=" color: #00F; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 8pt;"></span>
+        <a href="https://github.com/Nishantketu-ops"
+            style=" color: black; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 8pt;"
+            target="_blank">GitHub: </a><span
+            style=" color: #00F; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 8pt;">Nishantketu-ops</span><a
+            href="https://github.com/Nishantketu-ops"
+            style=" color: #00F; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 8pt;"
+            target="_blank"> </a><span
+            style=" color: #00F; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 8pt;">(github.com)</span>
+        <a href="http://www.linkedin.com/in/nishant-ketu-gaurav-b9402a1b8"
+            style=" color: black; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 7pt;"
+            target="_blank">LinkedIn:</a><span
+            style=" color: #00F; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 7pt;">www.linkedin.com/in/nishan</span><a
+            href="http://www.linkedin.com/in/nishant-ketu-gaurav-b9402a1b8"
+            style=" color: #00F; font-family:&quot;Arial Black&quot;, sans-serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 7pt;"
+            target="_blank"> </a><a href="http://www.linkedin.com/in/nishant-ketu-gaurav-b9402a1b8" class="s7"
+            target="_blank">t-ketu-gaurav-b9402a1b8</a>
+    </p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p class="s9" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;"><a
+            name="bookmark0">EXPERIENCE</a></p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <h2 style="padding-left: 8pt;text-indent: 0pt;text-align: left;"><a name="bookmark1">TCS, </a><span
+            class="s10">Kolkata — </span><i>Systems Engineer</i></h2>
+    <p class="s12" style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: left;"><a name="bookmark2">May
+            2021 - PRESENT</a></p>
+    <ul id="l1">
+        <li data-list-text="">
+            <p style="padding-top: 6pt;padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;">
+                Conducted manual and automated testing of web applications using Selenium with Java in BDD framework.
+            </p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;"> <span
+                    class="p">Worked closely with developers to identify and resolve defects in the software.</span></p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;"> <span
+                    class="p">Developed and executed test plans and test cases for new software releases.</span></p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;"> <span
+                    class="p">Participated in agile sprint planning and retrospective meetings to provide input on
+                    testing efforts.</span></p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;"> <span
+                    class="p">Conducted regression testing to ensure that changes did not introduce new defects.</span>
+            </p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 132%;text-align: left;"> <span
+                    class="p">Documented and reported defects using JIRA and collaborated with developers to ensure
+                    timely resolution.</span></p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;"> <span
+                    class="p">Maintained testing environments and ensured that they were up to date with the latest
+                    software releases.</span></p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;"> <span
+                    class="p">Developed automated test scripts using Selenium with java in BDD Framework.</span></p>
+        </li>
+        <li data-list-text="">
+            <p class="s13" style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;"> <span
+                    class="p">Participated in peer reviews of test cases and test plans to ensure quality.</span></p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <p class="s9" style="padding-left: 8pt;text-indent: 0pt;text-align: left;"><a name="bookmark3">EDUCATION</a>
+            </p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+            <h2 style="padding-left: 8pt;text-indent: 0pt;text-align: left;"><a name="bookmark4">Patna University, Patna
+                </a><span class="s10">— </span><i>M.S.(Physics)</i></h2>
+            <p class="s12" style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;text-align: left;"><a
+                    name="bookmark5">2018-2020</a></p>
+            <p style="padding-top: 6pt;padding-left: 8pt;text-indent: 0pt;text-align: left;">Specialization: Advanced
+                Quantum Mechanics</p>
+            <p class="s9" style="padding-top: 4pt;padding-left: 8pt;text-indent: 0pt;text-align: left;"><a
+                    name="bookmark6">SKILLS</a></p>
+            <p style="text-indent: 0pt;text-align: left;"><br /></p>
+        </li>
+        <li data-list-text="">
+            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;">Automation Testing,
+                Regression Testing, Black Box Testing, Functional Testing, Integration Testing,</p>
+        </li>
+        <li data-list-text="">
+            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;">Api Testing,ETL
+                Testing, Selenium with java, SDLC &amp; Agile Methodology, Java, Python, SQL, GCP Big query, Cloud
+                function, Airflow Dags, Jira Tools, Git Bash, Bitbucket, GitHub, Test NG, Maven, Cucumber,</p>
+        </li>
+        <li data-list-text="">
+            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;">Excellent Problem
+                solving and Analytical Skills</p>
+        </li>
+        <li data-list-text="">
+            <p style="padding-left: 44pt;text-indent: -18pt;line-height: 131%;text-align: left;">work experience on
+                projects for clients in Retail Sector.</p>
+        </li>
+    </ul>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <p class="s9" style="padding-left: 8pt;text-indent: 0pt;text-align: left;"><a name="bookmark7">AWARDS</a></p>
+    <h3 style="padding-top: 6pt;padding-left: 8pt;text-indent: 0pt;line-height: 133%;text-align: justify;">International
+        Mathematics Olympiad<span class="p">. – Issued By SOF: Jan 2010</span></h3>
+    <h3 style="padding-top: 5pt;padding-left: 8pt;text-indent: 0pt;line-height: 136%;text-align: justify;">National
+        Science Olympiad. – Issued By SOF: Jan 2009</h3>
+    <p class="s9" style="padding-top: 3pt;padding-left: 8pt;text-indent: 0pt;text-align: left;"><a
+            name="bookmark8">PROJECTS </a><a name="bookmark9">&zwnj;</a></p>
+    <p style="text-indent: 0pt;text-align: left;"><br /></p>
+    <table style="border-collapse:collapse;margin-left:5.891pt" cellspacing="0">
+        <tr style="height:567pt">
+            <td style="width:346pt">
+                <p class="s14" style="padding-left: 2pt;text-indent: 0pt;text-align: left;"><a
+                        name="bookmark10">Location Tracking using Python</a></p>
+                <p class="s15"
+                    style="padding-top: 6pt;padding-left: 2pt;padding-right: 4pt;text-indent: 0pt;line-height: 131%;text-align: left;">
+                    A Simple Location Tracking Python Project that empowers users to track and log their geographic
+                    location using a Python script. Leveraging the capabilities of the Geolocation API, the project
+                    retrieves the user&#39;s latitude and longitude coordinates, providing a straightforward yet
+                    effective means of location tracking.</p>
+                <p style="padding-top: 6pt;padding-left: 2pt;text-indent: 0pt;text-align: left;"><a
+                        href="https://github.com/Nishantketu-ops/Location_tracking.git"
+                        style=" color: #666; font-family:&quot;Book Antiqua&quot;, serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt;"
+                        target="_blank">GitHub: </a><a href="https://github.com/Nishantketu-ops/Location_tracking.git"
+                        class="s16" target="_blank">https://github.com/Nishantketu-ops/Location_tracking.git</a></p>
+                <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                <p class="s14" style="padding-left: 2pt;text-indent: 0pt;text-align: left;"><a name="bookmark11">Face
+                        Recognition using Python</a></p>
+                <p class="s15"
+                    style="padding-top: 6pt;padding-left: 2pt;text-indent: 0pt;line-height: 131%;text-align: left;">A
+                    GUI built using Tkinter library in python that recognizes faces using underlying python files and
+                    provides data in a csv file.</p>
+                <p style="padding-top: 6pt;padding-left: 2pt;text-indent: 0pt;text-align: left;"><a
+                        href="https://github.com/Nishantketu-ops/Face_recognition.git"
+                        style=" color: #666; font-family:&quot;Book Antiqua&quot;, serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt;"
+                        target="_blank">GitHub: </a><a href="https://github.com/Nishantketu-ops/Face_recognition.git"
+                        class="s16" target="_blank">https://github.com/Nishantketu-ops/Face_recognition.git</a></p>
+                <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                <p class="s14" style="padding-left: 2pt;text-indent: 0pt;text-align: left;"><a name="bookmark12">Browser
+                        Automation Using Selenium with Java</a></p>
+                <p class="s15"
+                    style="padding-top: 6pt;padding-left: 2pt;padding-right: 18pt;text-indent: 0pt;line-height: 131%;text-align: left;">
+                    Automating a Google Search that opens Chrome Driver sends a Keyword in the Google search then
+                    retrieves URLs from the search page and visits first link further takes Screenshot and returns Back
+                    finally closing the Driver.</p>
+                <p style="padding-top: 6pt;padding-left: 2pt;text-indent: 0pt;text-align: left;"><a
+                        href="https://github.com/Nishantketu-ops/Browser_Automation.git"
+                        style=" color: #666; font-family:&quot;Book Antiqua&quot;, serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt;"
+                        target="_blank">GitHub: </a><a href="https://github.com/Nishantketu-ops/Browser_Automation.git"
+                        class="s16" target="_blank">https://github.com/Nishantketu-ops/Browser_Automation.git</a></p>
+                <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                <p class="s14" style="padding-left: 2pt;text-indent: 0pt;text-align: left;"><a
+                        name="bookmark13">Automating Api Testing</a></p>
+                <p
+                    style="padding-top: 6pt;padding-left: 2pt;padding-right: 33pt;text-indent: 0pt;line-height: 186%;text-align: left;">
+                    <a href="https://github.com/Nishantketu-ops/Api_Testing.git"
+                        style=" color: #666; font-family:&quot;Book Antiqua&quot;, serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt;"
+                        target="_blank">Automated Api Testing in TestNG Using Rest Assured Library . GitHub: </a><a
+                        href="https://github.com/Nishantketu-ops/Api_Testing.git" class="s16"
+                        target="_blank">https://github.com/Nishantketu-ops/Api_Testing.git</a>
+                </p>
+                <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                <p class="s17" style="padding-left: 2pt;text-indent: 0pt;text-align: left;"><a
+                        name="bookmark14">PUBLICATIONS</a></p>
+                <p style="text-indent: 0pt;text-align: left;"><br /></p>
+                <p class="s14" style="padding-left: 2pt;text-indent: 0pt;text-align: left;"><a
+                        name="bookmark15">Molecular Crystal and Liquid Crystal (Taylor and Francis Group)</a><span
+                        class="s18">— </span><i>24 Aug.2021</i></p>
+                <p class="s15"
+                    style="padding-top: 6pt;padding-left: 2pt;padding-right: 25pt;text-indent: 0pt;line-height: 132%;text-align: left;">
+                    A theoretical study on the stability of the classical phases of surfactant- water systems in the
+                    temperature-concentration phase diagram.</p>
+                <p style="padding-top: 5pt;padding-left: 2pt;text-indent: 0pt;line-height: 10pt;text-align: left;"><a
+                        href="https://doi.org/10.1080/15421406.2021.1969324"
+                        style=" color: #666; font-family:&quot;Book Antiqua&quot;, serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 9pt;"
+                        target="_blank">Doc Url: </a><a href="https://doi.org/10.1080/15421406.2021.1969324" class="s20"
+                        target="_blank">https://doi.org/10.1080/15421406.2021.1969324</a></p>
+            </td>
+            <td style="width:125pt">
+                <p class="s15" style="padding-left: 14pt;text-indent: 0pt;line-height: 132%;text-align: left;"></p>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Rest of your HTML content end here -->
+    <script>
+        let isResizing = false;
+        let startX;
+        let startY;
+
+        function startResize(event) {
+            isResizing = true;
+            startX = event.clientX;
+            startY = event.clientY;
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', stopResize);
+        }
+
+        function handleMouseMove(event) {
+            if (isResizing) {
+                const globeContainer = document.querySelector('.globe-container');
+                const newWidth = globeContainer.offsetWidth + (event.clientX - startX);
+                const newHeight = globeContainer.offsetHeight + (event.clientY - startY);
+                globeContainer.style.width = `${newWidth}px`;
+                globeContainer.style.height = `${newHeight}px`;
+                startX = event.clientX;
+                startY = event.clientY;
+            }
+        }
+
+        function stopResize() {
+            isResizing = false;
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', stopResize);
+        }
+    </script>
+</body>
+
+</html>
